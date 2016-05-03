@@ -77,5 +77,3 @@ Start-Process -FilePath mstsc.exe -ArgumentList "/v:$IP"
 
 # Delete the entire resource group when finished
 Remove-AzureRmResourceGroup -Name $rgname -Force -Verbose
-
-
