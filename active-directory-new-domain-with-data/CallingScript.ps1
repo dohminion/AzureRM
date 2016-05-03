@@ -12,7 +12,7 @@ Install-AzureRM
 Install-Module Azure -Force -Verbose
 
 # Import AzureRM modules for the given version manifest in the AzureRM module
-Import-AzureRM -Verbose
+Import-module AzureRM -Verbose
 
 # Import Azure Service Management module
 Import-Module Azure -Verbose
@@ -25,9 +25,9 @@ Login-AzureRmAccount
 #$URI       = 'https://raw.githubusercontent.com/GoateePFE/AzureRM/master/active-directory-new-domain-with-data/azuredeploy.json'
 $URI       = 'https://raw.githubusercontent.com/dohminion/AzureRM/master/active-directory-new-domain-with-data/azuredeploy.json'
 $Location  = 'West us'
-$rgname    = 'RG-MoreMinions'
-$saname    = 'storage-moreminionssa'     # Lowercase required
-$addnsName = 'ad-moreminions'     # Lowercase required
+$rgname    = 'RG-MyMinions'
+$saname    = 'myminionssa'     # Lowercase required
+$addnsName = 'myminionsad'     # Lowercase required
 
 # Check that the public dns $addnsName is available
 if (Test-AzureRmDnsAvailability -DomainNameLabel $addnsName -Location $Location)
@@ -49,7 +49,7 @@ $SplatParams = @{
     TemplateUri             = $URI 
     ResourceGroupName       = $rgname 
     TemplateParameterObject = $MyParams
-    Name                    = 'MoreMinionsForest'
+    Name                    = 'myminionforest'
    }
 
 # This takes ~30 minutes
@@ -77,3 +77,5 @@ Start-Process -FilePath mstsc.exe -ArgumentList "/v:$IP"
 
 # Delete the entire resource group when finished
 Remove-AzureRmResourceGroup -Name $rgname -Force -Verbose
+
+
